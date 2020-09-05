@@ -15,7 +15,6 @@ app.get("/notes", (req, res) => {
     .catch((e) => console.error("Error: ", e));
 });
 
-// Example http://localhost:8081/note/2
 app.get("/note/:id", (req, res) => {
   fetch(`https://5f5265717c47c30016e305b7.mockapi.io/notes/${req.params.id}`)
     .then((res) => res.json())
@@ -46,7 +45,6 @@ app.put("/note/:id", (req, res) => {
 });
 
 app.delete("/note/:id", (req, res) => {
-  console.log("IN DELETE NOW");
   fetch(`https://5f5265717c47c30016e305b7.mockapi.io/notes/${req.params.id}`, {
     method: "DELETE",
   })
