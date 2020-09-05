@@ -1,10 +1,12 @@
 const http = require("http");
 const express = require("express");
 const fetch = require("node-fetch");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/notes", (req, res) => {
   fetch("https://5f5265717c47c30016e305b7.mockapi.io/notes")
@@ -28,9 +30,8 @@ app.post("/new", (req, res) => {
     headers: { "Content-Type": "application/json" },
   })
     .then((res) => res.json())
-    .then((json) => console.log(json))
+    .then((json) => res.send(json))
     .catch((e) => console.error("Error: ", e));
-  res.end();
 });
 
 app.put("/note/:id", (req, res) => {
